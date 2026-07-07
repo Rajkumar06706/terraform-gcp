@@ -25,23 +25,24 @@ output "workload_identity_pool_name" {
 
 output "workload_identity_provider_name" {
   description = "Workload Identity Provider resource name"
-  value       = google_iam_workload_identity_provider.github_provider.name
+  value       = google_iam_workload_identity_pool_provider.github_provider.name
 }
 
 output "workload_identity_provider_resource" {
-  description = "Full resource name for Workload Identity Provider (use in GitHub Actions)"
-  value       = google_iam_workload_identity_provider.github_provider.name
+  description = "Full resource name for Workload Identity Provider"
+  value       = google_iam_workload_identity_pool_provider.github_provider.name
 }
 
 output "github_secrets_created" {
   description = "GitHub Actions secrets created"
+
   value = {
-    GCP_PROJECT_ID                = github_actions_secret.gcp_project_id.secret_name
-    GCP_REGION                    = github_actions_secret.gcp_region.secret_name
-    GAR_REPOSITORY_NAME           = github_actions_secret.gar_repository_name.secret_name
-    GCP_SERVICE_ACCOUNT_EMAIL     = github_actions_secret.service_account_email.secret_name
-    WORKLOAD_IDENTITY_PROVIDER    = github_actions_secret.workload_identity_provider_resource.secret_name
-    GCP_PROJECT_NUMBER            = github_actions_secret.workload_identity_provider_project_number.secret_name
+    GCP_PROJECT_ID             = github_actions_secret.gcp_project_id.secret_name
+    GCP_REGION                 = github_actions_secret.gcp_region.secret_name
+    GAR_REPOSITORY_NAME        = github_actions_secret.gar_repository_name.secret_name
+    GCP_SERVICE_ACCOUNT_EMAIL  = github_actions_secret.service_account_email.secret_name
+    WORKLOAD_IDENTITY_PROVIDER = github_actions_secret.workload_identity_provider.secret_name
+    GCP_PROJECT_NUMBER         = github_actions_secret.gcp_project_number.secret_name
   }
 }
 
