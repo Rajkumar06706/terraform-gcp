@@ -1,25 +1,16 @@
-# GCP Configuration
-gcp_project_id = "your-gcp-project-id"
-gcp_region     = "us-central1"
+# DEPRECATED: Use environment variables instead of this file
+# See .github/REPOSITORY_SETUP.md for setup instructions
 
-# GAR Configuration
-gar_repository_name        = "github-docker"
-gar_repository_description = "Docker repository for GitHub CI/CD pipeline"
-gar_repository_format      = "docker"
+# Set these as environment variables before running terraform:
+# export TF_VAR_gcp_project_id="your-gcp-project-id"
+# export TF_VAR_gcp_region="us-central1"
+# export TF_VAR_gar_repository_name="github-docker"
+# export TF_VAR_github_token="ghp_xxxxxxxxxxxx"
+# export TF_VAR_github_org="your-github-org"
+# export TF_VAR_github_repo_name="your-repo-name"
+# export TF_VAR_service_account_id="github-gar-sa"
+# export TF_VAR_workload_identity_pool_id="github-pool"
+# export TF_VAR_workload_identity_provider_id="github-provider"
 
-# GitHub Configuration
-github_token      = "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx" # Use GitHub CLI or export as env var
-github_org        = "your-github-org-or-username"
-github_repo_name  = "your-repo-name"
-
-# Service Account Configuration
-service_account_id              = "github-gar-sa"
-workload_identity_pool_id       = "github-pool"
-workload_identity_provider_id   = "github-provider"
-
-# Repository Labels
-repository_labels = {
-  environment = "dev"
-  managed-by  = "terraform"
-  source      = "github"
-}
+# Or pass them directly:
+# terraform apply -var="gcp_project_id=my-project" -var="github_token=ghp_xxx" ...

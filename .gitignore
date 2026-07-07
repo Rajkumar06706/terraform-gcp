@@ -26,9 +26,6 @@ terraform.rc
 # Ignore plan files
 *.tfplan
 
-# Ignore lock file (optional - include for reproducible builds)
-# .terraform.lock.hcl
-
 # IDE
 .vscode/
 .idea/
@@ -36,3 +33,8 @@ terraform.rc
 *.swo
 *~
 .DS_Store
+
+# Environment files
+.env
+.env.local
+*.env
