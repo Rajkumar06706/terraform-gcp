@@ -1,0 +1,25 @@
+# GCP Configuration
+gcp_project_id = "your-gcp-project-id"
+gcp_region     = "us-central1"
+
+# GAR Configuration
+gar_repository_name        = "github-docker"
+gar_repository_description = "Docker repository for GitHub CI/CD pipeline"
+gar_repository_format      = "docker"
+
+# GitHub Configuration
+github_token      = "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx" # Use GitHub CLI or export as env var
+github_org        = "your-github-org-or-username"
+github_repo_name  = "your-repo-name"
+
+# Service Account Configuration
+service_account_id              = "github-gar-sa"
+workload_identity_pool_id       = "github-pool"
+workload_identity_provider_id   = "github-provider"
+
+# Repository Labels
+repository_labels = {
+  environment = "dev"
+  managed-by  = "terraform"
+  source      = "github"
+}

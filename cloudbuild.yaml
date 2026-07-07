@@ -1,0 +1,50 @@
+# Google Cloud Build configuration for building and pushing to GAR
+# This file demonstrates how to use Cloud Build with GAR
+# Customize the build steps according to your application needs
+
+steps:
+  # Step 1: Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'build-image'
+    args:
+      - 'build'
+      - '-t'
+      - '${_GAR_REGION}-docker.pkg.dev/${PROJECT_ID}/${_GAR_REPO}/${_IMAGE_NAME}:${SHORT_SHA}'
+      - '-t'
+      - '${_GAR_REGION}-docker.pkg.dev/${PROJECT_ID}/${_GAR_REPO}/${_IMAGE_NAME}:latest'
+      - '-f'
+      - './Dockerfile'
+      - '.'
+
+  # Step 2: Push image with commit SHA tag
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'push-image-sha'
+    args:
+      - 'push'
+      - '${_GAR_REGION}-docker.pkg.dev/${PROJECT_ID}/${_GAR_REPO}/${_IMAGE_NAME}:${SHORT_SHA}'
+
+  # Step 3: Push image with latest tag
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'push-image-latest'
+    args:
+      - 'push'
+      - '${_GAR_REGION}-docker.pkg.dev/${PROJECT_ID}/${_GAR_REPO}/${_IMAGE_NAME}:latest'
+
+# Substitutions (can be provided via gcloud command or Cloud Build trigger)
+substitutions:
+  _GAR_REGION: 'us-central1'  # Change to your region
+  _GAR_REPO: 'github-docker'   # Change to your repository name
+  _IMAGE_NAME: 'my-app'        # Change to your image name
+
+# Timeout for the build
+timeout: '1800s'
+
+# Images to push to GAR
+images:
+  - '${_GAR_REGION}-docker.pkg.dev/${PROJECT_ID}/${_GAR_REPO}/${_IMAGE_NAME}:${SHORT_SHA}'
+  - '${_GAR_REGION}-docker.pkg.dev/${PROJECT_ID}/${_GAR_REPO}/${_IMAGE_NAME}:latest'
+
+# Options
+options:
+  machineType: 'N1_HIGHCPU_8'
+  logging: CLOUD_LOGGING_ONLY
