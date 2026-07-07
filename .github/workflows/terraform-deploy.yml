@@ -36,16 +36,16 @@ jobs:
             echo "❌ ERROR: GCP_PROJECT_ID secret is not set"
             exit 1
           fi
-          if [ -z "${{ secrets.GITHUB_TOKEN_PAT }}" ]; then
-            echo "❌ ERROR: GITHUB_TOKEN_PAT secret is not set"
+          if [ -z "${{ secrets.TOKEN_PAT }}" ]; then
+            echo "❌ ERROR: TOKEN_PAT secret is not set"
             exit 1
           fi
-          if [ -z "${{ secrets.GITHUB_ORG }}" ]; then
-            echo "❌ ERROR: GITHUB_ORG secret is not set"
+          if [ -z "${{ secrets.ORG }}" ]; then
+            echo "❌ ERROR: ORG secret is not set"
             exit 1
           fi
-          if [ -z "${{ secrets.GITHUB_REPO_NAME }}" ]; then
-            echo "❌ ERROR: GITHUB_REPO_NAME secret is not set"
+          if [ -z "${{ secrets.REPO_NAME }}" ]; then
+            echo "❌ ERROR: REPO_NAME secret is not set"
             exit 1
           fi
           echo "✅ All required secrets are present"
@@ -56,9 +56,9 @@ jobs:
           TF_VAR_gcp_project_id: ${{ secrets.GCP_PROJECT_ID }}
           TF_VAR_gcp_region: ${{ secrets.GCP_REGION || 'us-central1' }}
           TF_VAR_gar_repository_name: ${{ secrets.GAR_REPOSITORY_NAME || 'github-docker' }}
-          TF_VAR_github_token: ${{ secrets.GITHUB_TOKEN_PAT }}
-          TF_VAR_github_org: ${{ secrets.GITHUB_ORG }}
-          TF_VAR_github_repo_name: ${{ secrets.GITHUB_REPO_NAME }}
+          TF_VAR_github_token: ${{ secrets.TOKEN_PAT }}
+          TF_VAR_github_org: ${{ secrets.ORG }}
+          TF_VAR_github_repo_name: ${{ secrets.REPO_NAME }}
           TF_VAR_service_account_id: ${{ secrets.SERVICE_ACCOUNT_ID || 'github-gar-sa' }}
           TF_VAR_workload_identity_pool_id: ${{ secrets.WORKLOAD_IDENTITY_POOL_ID || 'github-pool' }}
           TF_VAR_workload_identity_provider_id: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID || 'github-provider' }}
@@ -69,9 +69,9 @@ jobs:
           TF_VAR_gcp_project_id: ${{ secrets.GCP_PROJECT_ID }}
           TF_VAR_gcp_region: ${{ secrets.GCP_REGION || 'us-central1' }}
           TF_VAR_gar_repository_name: ${{ secrets.GAR_REPOSITORY_NAME || 'github-docker' }}
-          TF_VAR_github_token: ${{ secrets.GITHUB_TOKEN_PAT }}
-          TF_VAR_github_org: ${{ secrets.GITHUB_ORG }}
-          TF_VAR_github_repo_name: ${{ secrets.GITHUB_REPO_NAME }}
+          TF_VAR_github_token: ${{ secrets.TOKEN_PAT }}
+          TF_VAR_github_org: ${{ secrets.ORG }}
+          TF_VAR_github_repo_name: ${{ secrets.REPO_NAME }}
           TF_VAR_service_account_id: ${{ secrets.SERVICE_ACCOUNT_ID || 'github-gar-sa' }}
           TF_VAR_workload_identity_pool_id: ${{ secrets.WORKLOAD_IDENTITY_POOL_ID || 'github-pool' }}
           TF_VAR_workload_identity_provider_id: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID || 'github-provider' }}
@@ -83,9 +83,9 @@ jobs:
           TF_VAR_gcp_project_id: ${{ secrets.GCP_PROJECT_ID }}
           TF_VAR_gcp_region: ${{ secrets.GCP_REGION || 'us-central1' }}
           TF_VAR_gar_repository_name: ${{ secrets.GAR_REPOSITORY_NAME || 'github-docker' }}
-          TF_VAR_github_token: ${{ secrets.GITHUB_TOKEN_PAT }}
-          TF_VAR_github_org: ${{ secrets.GITHUB_ORG }}
-          TF_VAR_github_repo_name: ${{ secrets.GITHUB_REPO_NAME }}
+          TF_VAR_github_token: ${{ secrets.TOKEN_PAT }}
+          TF_VAR_github_org: ${{ secrets.ORG }}
+          TF_VAR_github_repo_name: ${{ secrets.REPO_NAME }}
           TF_VAR_service_account_id: ${{ secrets.SERVICE_ACCOUNT_ID || 'github-gar-sa' }}
           TF_VAR_workload_identity_pool_id: ${{ secrets.WORKLOAD_IDENTITY_POOL_ID || 'github-pool' }}
           TF_VAR_workload_identity_provider_id: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID || 'github-provider' }}
@@ -105,9 +105,9 @@ jobs:
           TF_VAR_gcp_project_id: ${{ secrets.GCP_PROJECT_ID }}
           TF_VAR_gcp_region: ${{ secrets.GCP_REGION || 'us-central1' }}
           TF_VAR_gar_repository_name: ${{ secrets.GAR_REPOSITORY_NAME || 'github-docker' }}
-          TF_VAR_github_token: ${{ secrets.GITHUB_TOKEN_PAT }}
-          TF_VAR_github_org: ${{ secrets.GITHUB_ORG }}
-          TF_VAR_github_repo_name: ${{ secrets.GITHUB_REPO_NAME }}
+          TF_VAR_github_token: ${{ secrets.TOKEN_PAT }}
+          TF_VAR_github_org: ${{ secrets.ORG }}
+          TF_VAR_github_repo_name: ${{ secrets.REPO_NAME }}
           TF_VAR_service_account_id: ${{ secrets.SERVICE_ACCOUNT_ID || 'github-gar-sa' }}
           TF_VAR_workload_identity_pool_id: ${{ secrets.WORKLOAD_IDENTITY_POOL_ID || 'github-pool' }}
           TF_VAR_workload_identity_provider_id: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER_ID || 'github-provider' }}
