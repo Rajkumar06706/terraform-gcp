@@ -22,10 +22,17 @@ jobs:
         run: |
           git config user.name "jira-github-broker"
           git config user.email "jira-github-broker@users.noreply.github.com"
-
+      
           TAG="v${{ github.event.client_payload.release_version }}"
-
+      
+          git fetch --tags
+      
+          if git rev-parse "${TAG}" >/dev/null 2>&1; then
+            echo "Tag ${TAG} already exists"
+            exit 1
+          fi
+      
           echo "Creating tag ${TAG}"
-
+      
           git tag "${TAG}"
           git push origin "${TAG}"
