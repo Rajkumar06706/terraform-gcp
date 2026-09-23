@@ -1,0 +1,25 @@
+name: Generate GitHub App Token
+
+on:
+  push:
+    branches:
+      - feature/jira11
+
+jobs:
+  generate-token:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate Installation Token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ vars.JIRA_APP_ID }}
+          private-key: ${{ secrets.JIRA_APP_PRIVATE_KEY }}
+          owner:Rajkumar06706
+          repositories: terraform-gcp
+
+      - name: Verify
+        run: |
+          echo "Token generated successfully"
+          echo "${{ steps.app-token.outputs.token }}" | wc -c
