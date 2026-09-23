@@ -5,6 +5,9 @@ on:
     types:
       - jira-release-approved
 
+permissions:
+  contents: write
+
 jobs:
 
   release:
@@ -15,10 +18,14 @@ jobs:
 
       - uses: actions/checkout@v4
 
-      - name: Print Release Payload
+      - name: Create Release Tag
         run: |
           git config user.name "jira-github-broker"
           git config user.email "jira-github-broker@users.noreply.github.com"
+
           TAG="v${{ github.event.client_payload.release_version }}"
+
+          echo "Creating tag ${TAG}"
+
           git tag "${TAG}"
           git push origin "${TAG}"
