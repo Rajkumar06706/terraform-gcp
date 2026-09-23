@@ -1,0 +1,24 @@
+name: Jira Trigger
+
+on:
+  repository_dispatch:
+    types:
+      - jira-cr-approved
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Print Payload
+        run: |
+          echo "Issue Key:"
+          echo "${{ github.event.client_payload.issue_key }}"
+
+          echo "Environment:"
+          echo "${{ github.event.client_payload.environment }}"
+
+          echo "Status:"
+          echo "${{ github.event.client_payload.status }}"
