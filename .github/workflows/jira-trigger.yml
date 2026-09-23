@@ -28,4 +28,3 @@ jobs:
 
           echo "Go No Go"
           echo "${{ github.event.client_payload.go_no_go }}"
-``
