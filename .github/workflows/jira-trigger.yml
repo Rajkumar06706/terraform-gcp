@@ -1,24 +1,24 @@
-name: Jira Trigger
+name: Release Management
 
 on:
   repository_dispatch:
     types:
-      - jira-cr-approved
+      - jira-release-approved
 
 jobs:
-  test:
+
+  release:
 
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Print Payload
+      - uses: actions/checkout@v4
+
+      - name: Print Release Payload
         run: |
-          echo "Issue Key:"
-          echo "${{ github.event.client_payload.issue_key }}"
+          echo "Release Version:"
+          echo "${{ github.event.client_payload.release_version }}"
 
           echo "Environment:"
           echo "${{ github.event.client_payload.environment }}"
-
-          echo "Status:"
-          echo "${{ github.event.client_payload.status }}"
