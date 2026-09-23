@@ -17,14 +17,8 @@ jobs:
 
       - name: Print Release Payload
         run: |
-          echo "Release Version"
-          echo "${{ github.event.client_payload.release_version }}"
-
-          echo "Application"
-          echo "${{ github.event.client_payload.application }}"
-
-          echo "Environment"
-          echo "${{ github.event.client_payload.environment }}"
-
-          echo "Go No Go"
-          echo "${{ github.event.client_payload.go_no_go }}"
+          git config user.name "jira-github-broker"
+          git config user.email "jira-github-broker@users.noreply.github.com"
+          TAG="v${{ github.event.client_payload.release_version }}"
+          git tag "${TAG}"
+          git push origin "${TAG}"
