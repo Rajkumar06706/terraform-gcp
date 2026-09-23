@@ -1,4 +1,4 @@
-name: Release Management
+name: Jira Trigger
 
 on:
   repository_dispatch:
@@ -15,9 +15,9 @@ jobs:
 
       - uses: actions/checkout@v4
 
-      - name: Print Release Payload
+      - name: Print Payload
         run: |
-          echo "Release Version:"
+          echo "Version:"
           echo "${{ github.event.client_payload.release_version }}"
 
           echo "Environment:"
