@@ -36,3 +36,15 @@ jobs:
       
           git tag "${TAG}"
           git push origin "${TAG}"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="v${{ github.event.client_payload.release_version }}"
+
+          echo "Creating GitHub Release ${TAG}"
+
+          gh release create "${TAG}" \
+            --title "Release ${TAG}" \
+            --generate-notes
