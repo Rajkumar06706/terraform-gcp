@@ -1,5 +1,4 @@
 name: Jira Trigger
-
 on:
   repository_dispatch:
     types:
